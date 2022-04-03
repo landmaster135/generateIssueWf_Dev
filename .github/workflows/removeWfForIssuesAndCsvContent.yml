@@ -1,0 +1,47 @@
+name: Remove workflow files making issue
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '0 7 * * *'  # https://crontab.guru
+
+jobs:
+  remove_workflows:
+    name: Remove workflow files
+    runs-on: ubuntu-latest
+    steps:
+
+    # Repo code checkout required if `template` is used
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.ISSUEBOT_TOKEN }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
+        architecture: 'x64'
+    
+    - name: Get Python version
+      run: python -V
+    
+    - name: Install dependencies
+      run: pip install --no-cache-dir -r requirements.txt
+      working-directory: ./generateIssueWf
+      
+    - name: Run Python
+      run: python remove_workflow_files_making_issue.py
+      working-directory: ./generateIssueWf
+
+    - name: git setting
+      run: |
+        git config --local user.email "52403447+landmaster135@users.noreply.github.com"
+        git config --local user.name "landmaster135"
+    
+    - name: git commit
+      run: |
+        git log -1
+        git rm .github/workflows/generateIssues_*.yml
+        git add .github/workflows/generatedWfFiles.txt
+        git add ./generateIssueWf/*.csv -u
+        git diff --cached --quiet || (git commit -m "Remove workflow making issues" && git push origin master)
