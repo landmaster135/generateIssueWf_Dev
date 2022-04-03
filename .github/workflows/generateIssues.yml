@@ -17,10 +17,6 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y/%m/%d')"
 
-    - name: ls
-      id: ls
-      run: ls
-
     - name: Scheduled Issue to landmaster135
       uses: imjohnbo/issue-bot@v3.3.6
       with:
