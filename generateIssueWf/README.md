@@ -56,35 +56,44 @@ sequenceDiagram
     links GWFT: {"Source": "https://github.com/landmaster135/neptunus-note/tree/master/.github/workflows"}
     links RWFICC: {"Source": "https://github.com/landmaster135/neptunus-note/tree/master/.github/workflows"}
     links RWMIP: {"Source": "https://github.com/landmaster135/neptunus-note/tree/master/generateIssueWf"}
+    Note over USER, GP: Edit by user starts
     USER->>CSVS: Edit titles wanted to be added to Issues and Projects.
+    Note over USER, GP: Edit by user terminates
     Note over USER, GP: Execution at midnight starts
     rect rgb(20, 90, 90)
-        SGA->>GWFI: Exe by cron
-        GWFI->>GWMIP: Exe
+        SGA->>GWFI: Start by cron
+        GWFI->>GWMIP: Exe starts
         GWMIP-->>CSVS: Refer
         CSVS-->>GWMIP: Return
-        GWMIP->>RWFICC: Rewrite cron
+        GWMIP->>+RWFICC: Rewrite cron
+        Note over RWFICC: For 30 minutes
         GWMIP-->>GIY: Refer
         GIY-->>GWMIP: Return
-        GWMIP->>GIA: Generate
+        GWMIP->>+GIA: Generate
+        Note over GIA: For 10 minutes
         GWMIP->>GWFT: Additionally write
         Note right of GWMIP: End of Python Script
+        GWMIP-->>GWFI: Exe terminated
         Note right of GWFI: End of Action
+        GWFI-->>SGA: End of Action
     end
     par Make Issues and add cards to Projects
-        SGA->>GIA: Exe by cron
-        GIA->>GI: Make Issues
+        SGA->>GIA: Start by cron
+        GIA->>-GI: Make Issues
         GIA->>GP: Add cards to Projects
         Note right of GIA: End of Action
+        GIA-->>SGA: End of Action
     end
     rect rgb(90, 20, 90)
-        SGA->>RWFICC: Exe by cron
-        RWFICC->>RWMIP: Exe
+        SGA->>RWFICC: Start by cron
+        RWFICC->>-RWMIP: Exe starts
         RWMIP->>GIA: Remove files of actions
         RWMIP->>GWFT: Delete name list of actions
         RWMIP->>CSVS: Delete title list of issues
         Note right of RWMIP: End of Python Script
+        RWMIP-->>RWFICC: Exe terminated
         Note right of RWFICC: End of Action
+        RWFICC-->>SGA: End of Actions
     end
     Note over USER, GP: Execution at midnight terminates
 ```
