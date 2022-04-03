@@ -1,0 +1,26 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Add new ToDo for Blog ✏
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=blog
+  - name: Add new ToDo for Programming 💻
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=programming
+  - name: Add new ToDo for Game 🎮
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=game
+  - name: Add new ToDo for Music 🎛
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=music
+  - name: Add new ToDo for Piano 🎹
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=piano
+  - name: Add new ToDo for Art 🎨
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=art
+  - name: Add new ToDo for Book (or Qualification) 📚
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F1&assignees=landmaster135&labels=book
+  - name: Add new ToDo 2
+    about: made by config.yml
+    url: https://github.com/landmaster135/neptunus-note/issues/new?template=custom.md&projects=landmaster135%2Fneptunus-note%2F2&assignees=landmaster135&labels=bug
