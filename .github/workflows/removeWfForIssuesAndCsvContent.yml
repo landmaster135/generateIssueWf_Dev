@@ -1,8 +1,8 @@
 name: Remove workflow files making issue
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '30 4 * * *'  # https://crontab.guru
+#   schedule:
+#   - cron: '30 4 * * *'  # https://crontab.guru
 
 jobs:
   remove_workflows:
