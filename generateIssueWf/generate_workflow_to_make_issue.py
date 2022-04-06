@@ -22,14 +22,9 @@ def rewrite_cron_of_remove_workflow(is_there_issue_to_generate : bool, minutes_s
     mark_of_cron = "  - cron: '"
     index_of_workflow_cron = get_indcies_containing_words(read_wf_lines, [mark_of_cron])[0]
     cron = generate_cron_from_datetime_now(minutes_scheduled_later, time_difference)
-    if is_there_issue_to_generate:
-        read_wf_lines[index_of_workflow_schedule] = "  schedule:"
-        read_wf_lines[index_of_workflow_cron] = f"  - cron: '{cron}'  # https://crontab.guru"
-        print(f"rewrite_cron_of_remove_workflow: is_there_issue_to_generate is True")
-    else:
-        read_wf_lines[index_of_workflow_schedule] = "#   schedule:"
-        read_wf_lines[index_of_workflow_cron] = f"#   - cron: '{cron}'  # https://crontab.guru"
-        print(f"rewrite_cron_of_remove_workflow: is_there_issue_to_generate is False")
+
+    read_wf_lines[index_of_workflow_schedule] = "  schedule:"
+    read_wf_lines[index_of_workflow_cron] = f"  - cron: '{cron}'  # https://crontab.guru"
 
     read_wf_lines_str = "\n".join(map(str, read_wf_lines))
     with open(file_full_name, "w") as fw:
@@ -52,6 +47,7 @@ def generate_workflow():
     print(txt_lines)
 
     if count_of_zero_length == len(labels):
+        txt_lines = [[["dummytitle", 0, "dummybody"]]]
         is_there_issue_to_generate = False
 
     minutes_scheduled_later = 10
@@ -64,8 +60,10 @@ def generate_workflow():
         cron_lines.append("  schedule:")
         cron_lines.append(f"  - cron: '{cron}'  # https://crontab.guru")
     else:
+        cron_lines.append("#   schedule:")
+        cron_lines.append(f"#   - cron: '{cron}'  # https://crontab.guru")
         print("No generated workflows to make issues today.")
-        return False
+        # return False
 
     str_of_workflow_dispatch = "  workflow_dispatch:"
     read_wf_lines = read_txt_lines(__file__, ["generateIssues.yml"], ".github/workflows")[0]
