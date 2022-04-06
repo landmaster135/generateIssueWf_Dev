@@ -1,8 +1,8 @@
 name: Generate workflow files to make issue
 on:
   workflow_dispatch:
-  schedule:
-  - cron: '0 19 * * *'  # At 04:00. – https://crontab.guru
+#   schedule:
+#   - cron: '0 19 * * *'  # At 04:00. – https://crontab.guru
 
 jobs:
   generate_workflows:
