@@ -8,7 +8,7 @@ from pathlib import Path
 # Library in the local
 from config import Config
 # Library in landmasterlibrary
-from landmasterlibrary.generaltool import get_str_by_zero_padding, get_src_path_from_test_path, read_txt_lines, read_csv_lines, get_indcies_containing_words, append_items, generate_cron_from_datetime_now
+from landmasterlibrary.generaltool import get_str_by_zero_padding, get_src_path_from_test_path, read_txt_lines, read_csv_lines, get_indcies_containing_words, replace_by_words, append_items, generate_cron_from_datetime_now
 
 
 def rewrite_cron_of_remove_workflow(is_there_issue_to_generate : bool, minutes_scheduled_later : int, time_difference : int):
@@ -86,7 +86,7 @@ def generate_workflow():
         for j in range(0, len(txt_lines[i])):
             # write contents
             index_of_attr = 3
-            read_wf_lines[index_of_name_of_scheduled_issue + index_of_attr] = f"{indent_of_part_of_setting_attrs}{obj_of_attrs[str(index_of_attr)]}: {txt_lines[i][j][0]}" # title
+            read_wf_lines[index_of_name_of_scheduled_issue + index_of_attr] = f"{indent_of_part_of_setting_attrs}{obj_of_attrs[str(index_of_attr)]}: {replace_by_words(txt_lines[i][j][0])}" # title
             label = str(labels[i])
             index_of_attr = 5
             read_wf_lines[index_of_name_of_scheduled_issue + index_of_attr] = f"{indent_of_part_of_setting_attrs}{obj_of_attrs[str(index_of_attr)]}: \"{label}\"" # labels
